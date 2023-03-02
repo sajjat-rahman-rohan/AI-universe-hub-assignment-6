@@ -11,7 +11,7 @@ const loadCard = (id) => {
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
-      showCarddata(data.data.tools);
+      showCarddata(data.data.tools.slice(0, 6));
     });
 };
 
