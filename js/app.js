@@ -7,10 +7,12 @@
 
 // api link card load function
 const loadCard = (id) => {
+  document.getElementById("spinner").classList.remove("d-none");
   const URL = `https://openapi.programming-hero.com/api/ai/tools`;
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
+      document.getElementById("spinner").classList.add("d-none");
       showCarddata(data.data.tools.slice(0, 6));
     });
 };
@@ -74,12 +76,12 @@ const showCarddata = (data) => {
 
 //  Show all Data
 const showAllCard = (id) => {
-  // document.getElementById("spinner").classList.remove("d-none");
+  document.getElementById("spinner").classList.remove("d-none");
   const URL = `https://openapi.programming-hero.com/api/ai/tools`;
   fetch(URL)
     .then((res) => res.json())
     .then((data) => {
-      // document.getElementById("spinner").classList.add("d-none");
+      document.getElementById("spinner").classList.add("d-none");
       showCarddata(data.data.tools);
     });
 };
