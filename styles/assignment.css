@@ -1,0 +1,71 @@
+/* font-family: 'Work Sans', sans-serif; */
+/* common css */
+body {
+  font-family: "Work Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h2,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* header style start */
+header h1 {
+  color: #111111;
+  font-weight: 600;
+  font-size: 45px;
+}
+
+header .btn,
+.card-api .btn {
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 18px;
+}
+/* header style end */
+
+/* card style start */
+.card-api .card {
+  border: 1px solid rgb(88, 88, 88, 0.3);
+}
+
+.card-api .card-img {
+  height: 200px;
+}
+
+.card-api .card-title {
+  color: #111111;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.card-api ul li,
+.card-date {
+  color: #585858;
+  font-weight: 400;
+}
+.card-date {
+  font-weight: 500;
+}
+
+.card-api .card-details {
+  border: none;
+  background-color: #faebeb;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.card-api .card-details i {
+  font-size: 20px;
+  color: #eb5757;
+}
+/* card style end */
