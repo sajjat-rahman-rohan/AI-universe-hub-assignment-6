@@ -72,4 +72,16 @@ const showCarddata = (data) => {
   });
 };
 
+//  Show all Data
+const showAllCard = (id) => {
+  // document.getElementById("spinner").classList.remove("d-none");
+  const URL = `https://openapi.programming-hero.com/api/ai/tools`;
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => {
+      // document.getElementById("spinner").classList.add("d-none");
+      showCarddata(data.data.tools);
+    });
+};
+
 loadCard();
