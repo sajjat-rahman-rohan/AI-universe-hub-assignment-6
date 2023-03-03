@@ -1,10 +1,3 @@
-// const singlePlayer = (id) => {
-//   const URL = `https://www.thesportsdb.com/api/v1/json/3/lookupplayer.php?id=${id}`;
-//   fetch(URL)
-//     .then((res) => res.json())
-//     .then((data) => showSinglePlayer(data.players[0]));
-// };
-
 // api link card load function
 const loadCard = (id) => {
   document.getElementById("spinner").classList.remove("d-none");
@@ -99,13 +92,28 @@ const loadCardDetails = (id) => {
 
 // display
 const displayCardDetails = (data) => {
-  console.log(data.features.feature_name);
+  // console.log(data.features.feature_name);
 
   const featureValue = Object.values(data.features);
-  console.log(featureValue[0].feature_name);
+  // console.log(featureValue[0].feature_name);
 
   const cardModal = document.getElementById("card-modal");
   cardModal.innerText = "";
+
+  if (data.pricing === null || typeof data.pricing === " undefined") {
+    data.pricing = "Free Of Cost";
+  }
+
+  if (data.integrations === null || typeof data.integrations === " undefined") {
+    console.log((data.integrations = ""));
+  }
+
+  if (
+    data.input_output_examples === null ||
+    typeof data.input_output_examples === " undefined"
+  ) {
+    data.input_output_examples = "Can you give any example?";
+  }
 
   //   data.forEach((data) => {
   const div = document.createElement("div");
@@ -122,26 +130,24 @@ const displayCardDetails = (data) => {
             class="modal-price-container text-center d-flex justify-content-between align-items-center"
         >
             <div class="modal-price one">
-            <h5>
+            <h5 >
               ${
-                data.pricing[0].price ? data.pricing[0].price : "No data Found"
-              }   ${
-    data.pricing[0].plan ? data.pricing[0].plan : "No data Found"
-  }
+                data.pricing[0].price ? data.pricing[0].price : "Free Of Cost/"
+              }   ${data.pricing[0].plan ? data.pricing[0].plan : "Basic"}
             </h5>
             </div>
             <div class="modal-price two">
-            <h5>
+            <h5 >
             ${
-              data.pricing[1].price ? data.pricing[1].price : "No data Found"
-            }   ${data.pricing[1].plan ? data.pricing[1].plan : "No data Found"}
+              data.pricing[1].price ? data.pricing[1].price : "Free Of Cost/"
+            }   ${data.pricing[1].plan ? data.pricing[1].plan : "Pro"}
             </h5>
             </div>
             <div class="modal-price three">
-            <h5>
+            <h5 >
             ${
-              data.pricing[2].price ? data.pricing[2].price : "No data Found"
-            }   ${data.pricing[2].plan ? data.pricing[2].plan : "No data Found"}
+              data.pricing[2].price ? data.pricing[2].price : "Free Of Cost"
+            }   ${data.pricing[2].plan ? data.pricing[2].plan : "Enterprise"}
             </h5>
             </div>
         </div>
@@ -184,6 +190,9 @@ const displayCardDetails = (data) => {
     <div class="col-6">
      <div class="card">
         <div class="card-body">
+        <button type="button" class=" accuracy-btn">${
+          data.accuracy.score ? data.accuracy.score : "No"
+        } accuracy</button>
         <img
             src="${data.image_link[0] ? data.image_link[0] : "No Image Found"}"
             class="card-img-top w-100"
@@ -193,13 +202,13 @@ const displayCardDetails = (data) => {
             <h5 class="card-title">${
               data.input_output_examples[0].input
                 ? data.input_output_examples[0].input
-                : "No data Found"
+                : "Can you give any example?"
             }</h5>
             <p class="card-text">
             ${
               data.input_output_examples[0].output
                 ? data.input_output_examples[0].output
-                : "No data Found"
+                : "No! Not Yet! Take a break!!!"
             }
             </p>
         </div>
