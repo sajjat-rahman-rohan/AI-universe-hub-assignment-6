@@ -62,8 +62,11 @@ const showCarddata = (data) => {
                   }
               </p>
               </div>
-              <button class="card-details">
-              <i class="bi bi-arrow-right"></i>
+              <button class="card-details"  >
+              <i class="bi bi-arrow-right" onclick="loadCardDetails('${
+                data.id
+              }')"   data-bs-toggle="modal"
+              data-bs-target="#exampleModal" ></i>
               </button>
            </div>
         </div>
@@ -85,5 +88,92 @@ const showAllCard = (id) => {
       showCarddata(data.data.tools);
     });
 };
+
+//  card modal show
+const loadCardDetails = (id) => {
+  const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => displayCardDetails(data.data));
+};
+
+const displayCardDetails = (data) => {
+  console.log(data.features.feature_name);
+
+  const cardModal = document.getElementById("card-modal");
+  cardModal.innerText = "";
+  //   modalTitle.innerText = data.tool_name;
+  //   //   data.forEach((data) => {
+  const div = document.createElement("div");
+  div.classList.add("row");
+  div.innerHTML = `
+    <div class="col-6">
+     <div class="card modal-info">
+        <div class="card-body">
+        <h5 class="card-title">
+         ${data.description}
+        </h5>
+
+        <div
+            class="modal-price-container text-center d-flex justify-content-between align-items-center"
+        >
+            <div class="modal-price one">
+            <h5>
+              ${data.pricing[0].price}   ${data.pricing[0].plan}
+            </h5>
+            </div>
+            <div class="modal-price two">
+            <h5>
+            ${data.pricing[1].price}   ${data.pricing[1].plan}
+            </h5>
+            </div>
+            <div class="modal-price three">
+            <h5>
+            ${data.pricing[2].price}   ${data.pricing[2].plan}
+            </h5>
+            </div>
+        </div>
+
+        <div
+            class="d-flex justify-content-between align-items-center"
+        >
+            <ul>
+            <li>1. ${data.features}</li>
+            <li>2. Multilingual support</li>
+            <li>3. Seamless integration</li>
+            </ul>
+            <ul>
+            <li>1. ${data.integrations[0]}</li>
+            <li>2. ${data.integrations[1]}</li>
+            <li>3. ${data.integrations[2]}</li>
+            </ul>
+        </div>
+        </div>
+     </div>
+    </div>
+    <div class="col-6">
+     <div class="card">
+        <div class="card-body">
+        <img
+            src="${data.image_link[0]}"
+            class="card-img-top w-100"
+            alt="..."
+        />
+        <div class="card-text-info text-center">
+            <h5 class="card-title">${data.input_output_examples[0].input}</h5>
+            <p class="card-text">
+            ${data.input_output_examples[0].output}
+            </p>
+        </div>
+        </div>
+     </div>
+    </div>
+
+  `;
+
+  cardModal.appendChild(div);
+};
+
+loadCardDetails();
 
 loadCard();

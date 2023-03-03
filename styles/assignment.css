@@ -77,15 +77,16 @@ header .btn,
 /* card modal styles start */
 
 .card-modal .card-img-top {
-  height: 300px;
+  height: 280px;
+  border-radius: 5px;
 }
 
 .card-text-info {
   padding: 20px 40px 0px;
 }
-.card-modal .card {
+/* .card-modal .card {
   padding: 20px;
-}
+} */
 
 .card-modal .modal-info {
   border: 1px solid #eb5757;
@@ -96,10 +97,12 @@ header .btn,
 .modal-price-container .modal-price {
   background-color: #ffffff;
   border-radius: 15px;
-  padding: 20px 20px;
-  margin: 20px 0px 20px;
-  font-size: 22px;
+  padding: 10px;
+  margin: 20px 5px 20px;
   font-weight: 700;
+}
+.modal-price-container .modal-price h5 {
+  font-size: 16px;
 }
 
 .one {
