@@ -34,7 +34,8 @@ header .btn,
 /* header style end */
 
 /* card style start */
-.card-api .card {
+.card-api .card,
+.card-modal .card {
   border: 1px solid rgb(88, 88, 88, 0.3);
 }
 
@@ -42,14 +43,17 @@ header .btn,
   height: 200px;
 }
 
-.card-api .card-title {
+.card-api .card-title,
+.card-modal .card-title {
   color: #111111;
   font-weight: 600;
   font-size: 25px;
 }
 
 .card-api ul li,
-.card-date {
+.card-date,
+.card-modal .card-text,
+.card-modal ul li {
   color: #585858;
   font-weight: 400;
 }
@@ -69,3 +73,52 @@ header .btn,
   color: #eb5757;
 }
 /* card style end */
+
+/* card modal styles start */
+
+.card-modal .card-img-top {
+  height: 300px;
+}
+
+.card-text-info {
+  padding: 20px 40px 0px;
+}
+.card-modal .card {
+  padding: 20px;
+}
+
+.card-modal .modal-info {
+  border: 1px solid #eb5757;
+  background-color: rgb(235, 87, 87, 0.1);
+  padding-bottom: 55px;
+}
+
+.modal-price-container .modal-price {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px 20px;
+  margin: 20px 0px 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.one {
+  color: #03a30a;
+}
+.two {
+  color: #f28927;
+}
+.three {
+  color: #eb5757;
+}
+
+.col-5.me-auto {
+  margin-top: 0;
+}
+
+.modal-header,
+.modal-footer {
+  border-top: 0px;
+  border-bottom: 0px;
+}
+/* card modal styles end */ ;
