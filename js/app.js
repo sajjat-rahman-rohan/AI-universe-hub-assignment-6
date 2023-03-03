@@ -12,7 +12,8 @@ const loadCard = (id) => {
 
 // card data show function
 const showCarddata = (data) => {
-  console.log(data);
+  // console.log(data);
+
   // html data inject with dom
   const cardContainer = document.getElementById("card-info");
   cardContainer.innerHTML = "";
@@ -39,7 +40,7 @@ const showCarddata = (data) => {
            <hr />
   
            <div
-              class="card-text d-flex justify-content-between align-items-center">
+              class="card-text d-md-flex justify-content-between align-items-center">
               <div class="card-name-date">
               <h5 class="card-title">${
                 data.name ? data.name : "No data Found"
@@ -55,7 +56,7 @@ const showCarddata = (data) => {
                   }
               </p>
               </div>
-              <button class="card-details"  >
+              <button class="card-details mt-md-0 mt-3 "  >
               <i class="bi bi-arrow-right" onclick="loadCardDetails('${
                 data.id
               }')"   data-bs-toggle="modal"
@@ -70,7 +71,7 @@ const showCarddata = (data) => {
   });
 };
 
-//  Show all Data
+//  Show all Data function
 const showAllCard = (id) => {
   document.getElementById("spinner").classList.remove("d-none");
   const URL = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -82,7 +83,7 @@ const showAllCard = (id) => {
     });
 };
 
-//  card modal show
+//  card modal show function
 const loadCardDetails = (id) => {
   const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
   fetch(URL)
@@ -90,15 +91,12 @@ const loadCardDetails = (id) => {
     .then((data) => displayCardDetails(data.data));
 };
 
-// display
+// data display function
 const displayCardDetails = (data) => {
   // console.log(data.features.feature_name);
 
   const featureValue = Object.values(data.features);
   // console.log(featureValue[0].feature_name);
-
-  const cardModal = document.getElementById("card-modal");
-  cardModal.innerText = "";
 
   if (data.pricing === null || typeof data.pricing === " undefined") {
     data.pricing = "Free Of Cost";
@@ -115,19 +113,27 @@ const displayCardDetails = (data) => {
     data.input_output_examples = "Can you give any example?";
   }
 
+  const cardModal = document.getElementById("card-modal");
+  cardModal.innerText = "";
+
   //   data.forEach((data) => {
   const div = document.createElement("div");
   div.classList.add("row");
+  div.classList.add("g-4");
   div.innerHTML = `
-    <div class="col-6">
+    <div class="col-lg-6">
      <div class="card modal-info">
         <div class="card-body">
         <h5 class="card-title">
-         ${data.description ? data.description : "No data Found"}
+         ${
+           data.description
+             ? data.description.slice(0, 100) + "..."
+             : "No data Found"
+         }
         </h5>
 
         <div
-            class="modal-price-container text-center d-flex justify-content-between align-items-center"
+            class="modal-price-container text-center d-md-flex justify-content-between align-items-center"
         >
             <div class="modal-price one">
             <h5 >
@@ -153,7 +159,7 @@ const displayCardDetails = (data) => {
         </div>
 
         <div
-            class="d-flex justify-content-between align-items-center"
+            class="d-md-flex justify-content-between align-items-center"
         >
             <ul>
             <li>1. ${
@@ -172,14 +178,14 @@ const displayCardDetails = (data) => {
                 : "No data Found"
             }</li>
             </ul>
-            <ul>
-            <li>1. ${
+            <ul class="mt-md-0 mt-2 ">
+            <li class="list">  ${
               data.integrations[0] ? data.integrations[0] : "No data Found"
             }</li>
-            <li>2. ${
+            <li class="list">  ${
               data.integrations[1] ? data.integrations[1] : "No data Found"
             }</li>
-            <li>3. ${
+            <li class="list">  ${
               data.integrations[2] ? data.integrations[2] : "No data Found"
             }</li>
             </ul>
@@ -187,7 +193,7 @@ const displayCardDetails = (data) => {
         </div>
      </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6">
      <div class="card">
         <div class="card-body">
         <button type="button" class=" accuracy-btn">${
@@ -201,13 +207,13 @@ const displayCardDetails = (data) => {
         <div class="card-text-info text-center">
             <h5 class="card-title">${
               data.input_output_examples[0].input
-                ? data.input_output_examples[0].input
+                ? data.input_output_examples[0].input.slice(0, 50)
                 : "Can you give any example?"
             }</h5>
             <p class="card-text">
             ${
               data.input_output_examples[0].output
-                ? data.input_output_examples[0].output
+                ? data.input_output_examples[0].output.slice(0, 90) + "..."
                 : "No! Not Yet! Take a break!!!"
             }
             </p>
@@ -220,6 +226,59 @@ const displayCardDetails = (data) => {
 
   cardModal.appendChild(div);
 };
+
+// sort by date all data
+const sortByDateA = (id) => {
+  document.getElementById("spinner").classList.remove("d-none");
+  const URL = `https://openapi.programming-hero.com/api/ai/tools`;
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("spinner").classList.add("d-none");
+      sortByDateDisplayA(data.data.tools);
+    });
+};
+
+// sort by date function
+const sortByDateDisplayA = (data) => {
+  console.log(data);
+
+  let result = data.sort(
+    (a, b) =>
+      new Date(a.published_in).getTime() - new Date(b.published_in).getTime()
+  );
+  console.log(result);
+
+  showCarddata(result);
+};
+
+const sortByDateD = (id) => {
+  document.getElementById("spinner").classList.remove("d-none");
+  const URL = `https://openapi.programming-hero.com/api/ai/tools`;
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("spinner").classList.add("d-none");
+      sortByDateDisplayD(data.data.tools);
+    });
+};
+
+const sortByDateDisplayD = (data) => {
+  console.log(data);
+
+  let results = data.sort(
+    (a, b) =>
+      new Date(b.published_in).getTime() - new Date(a.published_in).getTime()
+  );
+  console.log(results);
+
+  showCarddata(results);
+};
+
+sortByDateA();
+sortByDateD();
+
+// sortByDateDisplay();
 
 loadCardDetails();
 

@@ -18,6 +18,11 @@ li {
   list-style: none;
 }
 
+.list {
+  list-style: disc;
+  margin-left: 12px;
+}
+
 /* header style start */
 header h1 {
   color: #111111;
