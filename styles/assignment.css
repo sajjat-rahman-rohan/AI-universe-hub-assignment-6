@@ -39,12 +39,12 @@ header .btn,
   border: 1px solid rgb(88, 88, 88, 0.3);
 }
 
-.card-api .card-img {
+.card-api .card-img,
+.card-img-top {
   height: 200px;
 }
 
-.card-api .card-title,
-.card-modal .card-title {
+.card-api .card-title {
   color: #111111;
   font-weight: 600;
   font-size: 25px;
@@ -77,12 +77,21 @@ header .btn,
 /* card modal styles start */
 
 .card-modal .card-img-top {
-  height: 280px;
+  height: 220px;
   border-radius: 5px;
 }
 
+.card-modal .card-title {
+  font-size: 23px;
+}
+
+.card-modal .card-text,
+.card-modal ul li {
+  font-size: 12px;
+}
+
 .card-text-info {
-  padding: 20px 40px 0px;
+  padding: 20px 20px 0px;
 }
 /* .card-modal .card {
   padding: 20px;
@@ -91,14 +100,14 @@ header .btn,
 .card-modal .modal-info {
   border: 1px solid #eb5757;
   background-color: rgb(235, 87, 87, 0.1);
-  padding-bottom: 55px;
+  padding-bottom: 40px;
 }
 
 .modal-price-container .modal-price {
   background-color: #ffffff;
   border-radius: 15px;
   padding: 10px;
-  margin: 20px 5px 20px;
+  margin: 10px 5px;
   font-weight: 700;
 }
 .modal-price-container .modal-price h5 {
@@ -124,4 +133,4 @@ header .btn,
   border-top: 0px;
   border-bottom: 0px;
 }
-/* card modal styles end */ ;
+/* card modal styles end */
