@@ -44,6 +44,10 @@ header .btn,
   border: 1px solid rgb(88, 88, 88, 0.3);
 }
 
+.card-modal .card {
+  height: 380px;
+}
+
 .card-api .card-img,
 .card-img-top {
   height: 200px;
@@ -82,7 +86,7 @@ header .btn,
 /* card modal styles start */
 
 .card-modal .card-img-top {
-  height: 220px;
+  height: 230px;
   border-radius: 5px;
 }
 
@@ -98,14 +102,10 @@ header .btn,
 .card-text-info {
   padding: 20px 20px 0px;
 }
-/* .card-modal .card {
-  padding: 20px;
-} */
 
 .card-modal .modal-info {
   border: 1px solid #eb5757;
   background-color: rgb(235, 87, 87, 0.1);
-  padding-bottom: 40px;
 }
 
 .modal-price-container .modal-price {
@@ -156,3 +156,10 @@ header .btn,
   background-color: #eb5757;
 }
 /* card modal styles end */
+
+/* Mobile Device Media Screen */
+@media screen and (max-width: 768px) {
+  .card-modal .card {
+    height: 100%;
+  }
+}
