@@ -34,6 +34,9 @@ const showCarddata = (data) => {
               <li>3. ${
                 data.features[2] ? data.features[2] : "No data Found"
               } </li>
+              <li>4. ${
+                data.features[3] ? data.features[3] : "No data Found"
+              } </li>
            </ul>
            <hr />
   
@@ -63,14 +66,16 @@ const showCarddata = (data) => {
   });
 };
 
-//  Show all Data function
-const showAllCard = async (id) => {
+// sort by date all data Descending
+const sortByDateD = (id) => {
   document.getElementById("spinner").classList.remove("d-none");
-  const url = `https://openapi.programming-hero.com/api/ai/tools`;
-  const res = await fetch(url);
-  const data = await res.json();
-  document.getElementById("spinner").classList.add("d-none");
-  showCarddata(data.data.tools);
+  const URL = `https://openapi.programming-hero.com/api/ai/tools`;
+  fetch(URL)
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("spinner").classList.add("d-none");
+      sortByDateDisplayD(data.data.tools);
+    });
 };
 
 //  card modal show function
@@ -101,7 +106,7 @@ const displayCardDetails = (data) => {
   }
 
   const featureValue = Object.values(data.features);
-  // console.log(featureValue[0].feature_name);
+  // console.log(featureValue);
 
   const cardModal = document.getElementById("card-modal");
   cardModal.innerText = "";
@@ -167,6 +172,11 @@ const displayCardDetails = (data) => {
                 ? featureValue[2].feature_name
                 : "No data Found"
             }</li>
+            <li>4. ${
+              featureValue.length === 4
+                ? featureValue[3].feature_name
+                : "No data Found"
+            }</li>
             </ul>
             <ul class="mt-md-0 mt-2 ">
            <h5 class="card-title">Integrations</h5>
@@ -178,6 +188,9 @@ const displayCardDetails = (data) => {
             }</li>
             <li class="list">  ${
               data.integrations[2] ? data.integrations[2] : "No data Found"
+            }</li>
+            <li class="list">  ${
+              data.integrations[3] ? data.integrations[3] : "No data Found"
             }</li>
             </ul>
         </div>
@@ -242,18 +255,6 @@ const sortByDateDisplayA = (data) => {
   showCarddata(result);
 };
 
-// sort by date all data Descending
-const sortByDateD = (id) => {
-  document.getElementById("spinner").classList.remove("d-none");
-  const URL = `https://openapi.programming-hero.com/api/ai/tools`;
-  fetch(URL)
-    .then((res) => res.json())
-    .then((data) => {
-      document.getElementById("spinner").classList.add("d-none");
-      sortByDateDisplayD(data.data.tools);
-    });
-};
-
 // sort by date function
 const sortByDateDisplayD = (data) => {
   // console.log(data);
@@ -265,6 +266,16 @@ const sortByDateDisplayD = (data) => {
   // console.log(results);
 
   showCarddata(results);
+};
+
+//  Show all Data function
+const showAllCard = async (id) => {
+  document.getElementById("spinner").classList.remove("d-none");
+  const url = `https://openapi.programming-hero.com/api/ai/tools`;
+  const res = await fetch(url);
+  const data = await res.json();
+  document.getElementById("spinner").classList.add("d-none");
+  showCarddata(data.data.tools);
 };
 
 sortByDateD();
